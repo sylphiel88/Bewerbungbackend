@@ -7,6 +7,7 @@
             * {
                 font-family: "Bahnschrift";
                 font-size: 11pt;
+                color: black;
             }
 
             .color1BG{
@@ -28,29 +29,31 @@
             .siteNameDivText{
                 display: block;
                 position: relative;
-                color: white;
+                color: <%=colorBool?'black':'white' %>;
                 letter-spacing: 35px;
                 top: 770px;
+                left: 5px;
                 margin-left:-20px;
                 font-size: 48pt;
-                left: 0;
+                
                 transform: rotate(-90deg);
                 -webkit-transform: rotate(-90deg);
                 -moz-transform: rotate(-90deg);
             }
 
             .siteNameDiv{
+                position: relative;
+                left:-20px;
+                top: -10px;
                 float: left;
-                margin-top: -1%;
-                margin-left: -1%;
-                height: 101.42%;
+                height: 1124px;
                 width: 100px;
             }
 
             .siteContent{
                 padding-left: 30px;
                 float: left;
-                height: 100%;
+                height: 1124px;
                 width: 600px;
             }
 
@@ -120,11 +123,11 @@
             }
 
             .zeile2{
-                height: 130px;
+                height: 150px;
             }
             
             .zeile3{
-                height: 70px;
+                height: 75px;
             }
 
             .subtitle{
@@ -198,12 +201,13 @@
         <br>
         <br>
         <p class="firstDate"><%= moment().locale('de').format('Do MMMM YYYY') %></p>
-        <div class="betreff color1BG">
+        <% let color=colorBool?"black":"white" %>
+        <div class="betreff color1BG" style="color: <%=color%>;">
             Bewerbung für ein vergütungsfreies Praktikum im Bereich Fachinformatiker / Anwendungsentwicklung als Praxis für die Reha-Umschulung
         </div>
         <br>
         <br>
-        <span>Sehr geehrte<% if(infos.referenceGen=="Mann"){%><span>r</span><% } %> <%=infos.referenceGen%> <%=infos.referenceLN%>,</span><br/>
+        <span>Sehr geehrte<% if(infos.referenceGen=="Herr"){%><span>r</span><% } %> <%=infos.referenceGen%> <%=infos.referenceLN%>,</span><br/>
         <br/>
         <p>
             <% absatz1.forEach(word=>{
@@ -246,7 +250,6 @@
         <p>Mit freundlichen Grüßen</p>
         <br>
         <p><%= infos.myName %></p>
-        <br>
         <br>
         <p class="secondDate"><%= moment().locale('de').format('Do MMMM YYYY') %></p>
     </div>
@@ -349,7 +352,9 @@
             <span class="subtitle kursiv">Abitur</span><br>
             <span class="subtitle">Lohwasen 1</span><br>
             <span class="subtitle">73728 Esslingen</span>
-        </div>      
+        </div>   
+        <br/>   
+        <br/>
         <p class="secondDate"><%= moment().locale('de').format('Do MMMM YYYY') %></p>
     </div>
     <div class="siteNameDiv color1BG"><span class="siteNameDivText">Lebenslauf</span></div>
@@ -407,7 +412,7 @@
             <span><%= infos.myName %></span><br>
             <span class="subtitle">Dieses Schreiben wurde automatisch erstellt mittels eines EJS-Templates und eines React-Frontends</span>
         </div>
-        <div class="date"><p class="secondDate"><%= moment().locale('de').format('Do MMMM YYYY') %></p></div>
+        <div class="date"><p class="secondDate"><%= moment().locale('de').format('Do MMMM YYYY') %></span></div>
     </div>
     </body>
 </html>

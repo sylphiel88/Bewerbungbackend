@@ -13,13 +13,20 @@ router.get('/', (req, res) => {
 
 router.post('/pdf', (req, res) => {
 	var infos = req.body;
+	var hsp = Math.sqrt(0.299 * (infos.red1 * infos.red1) + 0.587 * (infos.green1 * infos.green1) + 0.114 * (infos.blue1 * infos.blue1));
+	var colorBool=false
+	if (hsp > 127.5) {
+		colorBool=true;
+	} else {
+		colorBool=false;
+	}
 	var absatz1 = infos.absatz1;
 	absatz1 = absatz1.split(' ');
 	var absatz2 =
 		'Ich mache gerade eine Reha-Umschulung zum Fachinformatiker / Fachbereich Anwend-ungsentwicklung. Dabei habe ich den Umgang mit *Java und *Python, Office Programmen, *Datenbanken, Windows, Hardware und *Netzwerktechnik erlernt und möchte das Gelernte nun gerne in der Praxis umsetzen. Bereits seit früher Jugend habe ich mit dem Programmieren begonnen, zunächst mit Basic-Sprachen, dann mit *objektorierteren *Sprachen, wie C++ oder Java bis hin zu Unity und *C# jüngerer Vergangenheit. Ich habe mir zudem selbst während der Ausbildung Grundkonzepte von *Javascript, *NodeJs und *React beigebracht. Ich habe ebenso bereits ein paar *kleinere *Daten-Projekte mit Python erstellt.';
 	absatz2 = absatz2.split(' ');
 	var absatz3 =
-		'Während meiner Ausbildung habe ich mich als *besonders *teamfähig erwiesen. Eine Stärke von mir ist es, Probleme *lösungsorientiert anzugehen. Zudem erweise ich mich als sehr *lernfähig und zeige dabei eine große und *schnelle *Auffassungsgabe.';
+		'Während meiner Ausbildung habe ich mich als *besonders *teamfähig gezeigt. Eine Stärke von mir ist es, Probleme *lösungsorientiert anzugehen. Beides habe ich in diversen *Gruppenarbeiten unter Beweis gestellt. Zudem erweise ich mich als sehr *lernfähig und zeige dabei eine große und *schnelle *Auffassungsgabe. Dies konnte ich vor allem durch das *Selbststudium von React und anderen Konzepten während der Ausbildung beweisen.';
 	absatz3 = absatz3.split(' ');
 	var absatz4 =
 		'Gerne werde ich Ihnen mehr von mir und meinen *Fähigkeiten berichten, wenn Sie mich zu einem Gespräch einladen.';
@@ -35,6 +42,7 @@ router.post('/pdf', (req, res) => {
 			absatz2: absatz2,
 			absatz3: absatz3,
 			absatz4: absatz4,
+			colorBool: colorBool,
 			pic: pic
 		},
 		function(err, result) {
@@ -51,7 +59,7 @@ router.post('/pdf', (req, res) => {
 					console.log(err);
 				} else {
 					var merger = new PDFMerger();
-					merger.add('./public/test.pdf');
+					merger.add('./public/test.pdf',[1,2, 3]);
 					merger.add('./public/Anlagen.pdf');
 					await merger.save('./public/Bewerbung_Praktikum_' + infos.company + '_Ihmels.pdf');
 				}
@@ -81,13 +89,20 @@ router.get('/getPdf', async (req, res) => {
 
 router.post('/html', (req, res) => {
 	var infos = req.body;
+	var hsp = Math.sqrt(0.299 * (infos.red1 * infos.red1) + 0.587 * (infos.green1 * infos.green1) + 0.114 * (infos.blue1 * infos.blue1));
+	var colorBool=false
+	if (hsp > 127.5) {
+		colorBool=true;
+	} else {
+		colorBool=false;
+	}
 	var absatz1 = infos.absatz1;
 	absatz1 = absatz1.split(' ');
 	var absatz2 =
 		'Ich mache gerade eine Reha-Umschulung zum Fachinformatiker / Fachbereich Anwend-ungsentwicklung. Dabei habe ich den Umgang mit *Java und *Python, Office Programmen, *Datenbanken, Windows, Hardware und *Netzwerktechnik erlernt und möchte das Gelernte nun gerne in der Praxis umsetzen. Bereits seit früher Jugend habe ich mit dem Programmieren begonnen, zunächst mit Basic-Sprachen, dann mit *objektorierteren *Sprachen, wie C++ oder Java bis hin zu Unity und *C# jüngerer Vergangenheit. Ich habe mir zudem selbst während der Ausbildung Grundkonzepte von *Javascript, *NodeJs und *React beigebracht. Ich habe ebenso bereits ein paar *kleinere *Daten-Projekte mit Python erstellt.';
 	absatz2 = absatz2.split(' ');
 	var absatz3 =
-		'Während meiner Ausbildung habe ich mich als *besonders *teamfähig gezeigt. Eine Stärke von mir ist es, Probleme *lösungsorientiert anzugehen. Zudem erweise ich mich als sehr *lernfähig und zeige dabei eine große und *schnelle *Auffassungsgabe.';
+	'Während meiner Ausbildung habe ich mich als *besonders *teamfähig gezeigt. Eine Stärke von mir ist es, Probleme *lösungsorientiert anzugehen. Beides habe ich in diversen *Gruppenarbeiten unter Beweis gestellt. Zudem erweise ich mich als sehr *lernfähig und zeige dabei eine große und *schnelle *Auffassungsgabe. Dies konnte ich vor allem durch das *Selbststudium von React und anderen Konzepten während der Ausbildung beweisen.';
 	absatz3 = absatz3.split(' ');
 	var absatz4 =
 		'Gerne werde ich Ihnen mehr von mir und meinen *Fähigkeiten berichten, wenn Sie mich zu einem Gespräch einladen.';
@@ -103,6 +118,7 @@ router.post('/html', (req, res) => {
 			absatz2: absatz2,
 			absatz3: absatz3,
 			absatz4: absatz4,
+			colorBool: colorBool,
 			pic: pic
 		},
 		function(err, result) {
