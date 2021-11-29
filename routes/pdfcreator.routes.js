@@ -59,7 +59,7 @@ router.post('/pdf', (req, res) => {
 					console.log(err);
 				} else {
 					var merger = new PDFMerger();
-					merger.add('./public/test.pdf',[1,2, 3]);
+					merger.add('./public/test.pdf',[1,2,3]);
 					merger.add('./public/Anlagen.pdf');
 					await merger.save('./public/Bewerbung_Praktikum_' + infos.company + '_Ihmels.pdf');
 				}
